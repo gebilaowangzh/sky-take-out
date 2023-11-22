@@ -1,5 +1,6 @@
 package com.sky.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class Employee implements Serializable {
     private String sex;
 
     private String idNumber;
-
+    @ApiModelProperty("账号状态 1正常 0锁定")
     private Integer status;
 
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
