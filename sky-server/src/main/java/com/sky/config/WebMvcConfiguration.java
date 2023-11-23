@@ -102,6 +102,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         // 设置消息转换器的支持类型
         converter.setObjectMapper(new JacksonObjectMapper());
         // 将消息转换器添加到集合中
+        //将这个消息转换器添加到了转换器集合的首位，这意味着它将首先被尝试用来处理HTTP请求和响应的消息转换工作。
         converters.add(0, converter);
     }
 
