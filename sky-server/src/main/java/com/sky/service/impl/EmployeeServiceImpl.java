@@ -1,5 +1,7 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
@@ -93,11 +95,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 分页查询
+     *
      * @param employeePageQueryDTO
      * @return
      */
     @Override
-    public PageResult pageQuear(EmployeePageQueryDTO employeePageQueryDTO){
+    public PageResult pageQuear(EmployeePageQueryDTO employeePageQueryDTO) {
+
+        //页码 每页记录数
+        PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getPageSize());
+        //PageHelper要求返回值为pagehelper包的Page
+        Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
 
         return null;
     }
