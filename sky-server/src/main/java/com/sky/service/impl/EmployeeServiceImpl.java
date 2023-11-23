@@ -23,6 +23,7 @@ import org.springframework.util.DigestUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -106,7 +107,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getPageSize());
         //PageHelper要求返回值为pagehelper包的Page
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
-
-        return null;
+        long total = page.getTotal();
+        List<Employee>  records = page.getResult();
+        return new PageResult(total, records);
     }
 }

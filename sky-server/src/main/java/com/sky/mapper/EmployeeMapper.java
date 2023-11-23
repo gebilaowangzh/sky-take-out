@@ -34,5 +34,5 @@ public interface EmployeeMapper {
      *
      * @param employeePageQueryDTO
      */
-    Page<Employee> pageQuery(@Param("employeePageQueryDTO") EmployeePageQueryDTO employeePageQueryDTO);
+    Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 }
