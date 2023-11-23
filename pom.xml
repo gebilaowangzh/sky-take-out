@@ -62,7 +62,7 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid}</version>
             </dependency>
-
+            <!--mybatis分页插件-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
