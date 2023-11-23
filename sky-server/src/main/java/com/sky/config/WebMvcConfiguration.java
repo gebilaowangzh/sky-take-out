@@ -44,10 +44,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 通过knife4j生成接口文档
+     *
      * @return
      */
     @Bean
-   // 创建docket对象
+    // 创建docket对象
     public Docket docket() {
         // 创建ApiInfo对象
         ApiInfo apiInfo = new ApiInfoBuilder()
@@ -74,8 +75,10 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         // 返回Docket对象
         return docket;
     }
+
     /**
      * 设置静态资源映射
+     *
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -95,6 +98,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 创建一个消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        //需要为消息转换器设置一个对象转换器，对象转换器可以将Java对象序列化为json数据
         // 设置消息转换器的支持类型
         converter.setObjectMapper(new JacksonObjectMapper());
         // 将消息转换器添加到集合中
