@@ -8,7 +8,7 @@ sky:
     password: 123456
   upload:
     #    文件上传配置
-    uploadDir: E:/daima/java/CangQiongWaiMai/nginx-1.20.2/media
+    uploadDir: E:\daima\java\CangQiongWaiMai\nginx-1.20.2\media\
     #    默认后缀
     imageSuffix: .jpg
     #    图片地址

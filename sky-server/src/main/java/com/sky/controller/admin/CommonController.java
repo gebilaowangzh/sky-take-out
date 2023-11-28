@@ -38,7 +38,7 @@ public class CommonController {
 
 
         log.info("上传图片：{}", file);
-        log.debug("Upload Directory: {}, Image Suffix: {}, Image URL: {}, Use Original Name for Upload: {}",
+        log.info("Upload Directory: {}, Image Suffix: {}, Image URL: {}, Use Original Name for Upload: {}",
                 uploadProperties.getUploadDir(),
                 uploadProperties.getImageSuffix(),
                 uploadProperties.getImgUrl(),
