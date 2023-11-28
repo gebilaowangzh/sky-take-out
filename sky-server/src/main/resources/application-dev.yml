@@ -6,3 +6,12 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  upload:
+    #    文件上传配置
+    uploadDir: E:/daima/java/CangQiongWaiMai/nginx-1.20.2/media
+    #    默认后缀
+    imageSuffix: .jpg
+    #    图片地址
+    imgUrl: http://localhost/media/
+    #    上传文件名中是否使用原文件名
+    useOriginalName: false

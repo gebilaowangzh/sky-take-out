@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "sky.upload")
 @Data
 public class UploadProperties {
-
-    private String path;
+    //文件上传配置
+    private String uploadDir;
+    //默认后缀
     private String imageSuffix;
-    private String accessKeySecret;
-    private String bucketName;
+    //图片地址
+    private String imgUrl;
+    //上传文件名中是否使用原文件名
+    private boolean useOriginalName;
 
 }
