@@ -40,6 +40,7 @@ execution(* com.sky.mapper.*.*(..))：这是一个表达式，表示要拦截的
 其中，@annotation表示检查方法上是否具有某个注解，com.sky.annotation.AutoFill表示要检查的注解。
 总之，这段代码定义了一个pointcut，用于拦截某个包下的所有方法，并满足某个注解（如@AutoFill）的条件。
  */
+
     /**
      * 自动填充 前置通知(就是方法增强
      *
@@ -49,22 +50,28 @@ execution(* com.sky.mapper.*.*(..))：这是一个表达式，表示要拦截的
     public void autoFill(JoinPoint joinPoint) {
         log.info("开始自动填充");
         // 获取操作类型
+        // 从切点获取方法签名对象
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        // 从方法签名中获取 AutoFill 注解对象
         AutoFill autoFill = signature.getMethod().getAnnotation(AutoFill.class);
+        // 从 AutoFill 注解中获取 value 值，这里假设 AutoFill 注解中有一个名为 value 的属性，类型为 OperationType
         OperationType operationType = autoFill.value();
 
-        // 获取当前被拦截的方法的参数
+
+        // 获取当前被拦截的方法的参数--实体对象 约定第一个参数是被拦截的方法的参数对象
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length == 0) {
             return;
         }
         Object entity = args[0];
 
+
         // 准备赋值的数据
         LocalDateTime now = LocalDateTime.now();
         Long currentId = BaseContext.getCurrentId();
 
-        // 根据不同的操作类型，进行不同的赋值
+
+        // 根据不同的操作类型，通过反射进行不同的赋值
         if (operationType == OperationType.INSERT) {
             try {
                 // 获取setCreateTime方法

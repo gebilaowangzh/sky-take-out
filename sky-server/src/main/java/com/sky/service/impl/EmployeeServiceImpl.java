@@ -81,16 +81,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setStatus(StatusConstant.ENABLE);
         //设置默认密码123456
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
-        // 设置创建时间
-        employee.setCreateTime(LocalDateTime.now());
-        // 设置更新时间
-        employee.setUpdateTime(LocalDateTime.now());
-
-        // 设置创建用户的ID
-
-        employee.setCreateUser(BaseContext.getCurrentId());
-        // 设置更新用户的ID
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        // 设置创建时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        // 设置更新时间
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        // 设置创建用户的ID
+//
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        // 设置更新用户的ID
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.insert(employee);
     }
 
@@ -124,8 +124,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         employee.setId(id);
         employee.setStatus(status);
-        //更新时间
-        employee.setUpdateTime(LocalDateTime.now());
+//        //更新时间
+//        employee.setUpdateTime(LocalDateTime.now());
+
 //        Lombok中的@Builder构建器提供的
 //        Employee employee = Employee.builder()
 //                .status(status)
@@ -154,10 +155,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void upDate(EmployeeDTO employeeDTO){
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
-        // 设置更新时间
-        employee.setUpdateTime(LocalDateTime.now());
-        // 设置更新用户的ID
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        // 设置更新时间
+//        employee.setUpdateTime(LocalDateTime.now());
+//        // 设置更新用户的ID
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 }
