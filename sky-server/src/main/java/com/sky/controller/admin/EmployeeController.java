@@ -68,6 +68,7 @@ public class EmployeeController {
 
     /**
      * 新增员工
+     *
      * @param employeeDTO
      * @return
      */
@@ -83,15 +84,34 @@ public class EmployeeController {
 
     /**
      * 分页查询员工
+     *
      * @param employeePageQueryDTO
      * @return
      */
+    //TODO 查询会查出密码
     @GetMapping("/page")
     @ApiOperation(value = "分页查询员工")
     public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("员工分页查询：{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuear(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 启用禁用员工账号
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "启用禁用员工账号")
+    public Result startOrStop(@PathVariable("status") Integer status, Long id) {
+        log.info("启用禁用员工账号：status：{}，id：{}",status,id);
+        employeeService.startOrStop(status, id);
+
+        return Result.success();
+
     }
 
 

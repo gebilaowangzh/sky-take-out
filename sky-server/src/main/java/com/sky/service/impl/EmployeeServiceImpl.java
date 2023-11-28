@@ -108,7 +108,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         //PageHelper要求返回值为pagehelper包的Page
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
         long total = page.getTotal();
-        List<Employee>  records = page.getResult();
+        List<Employee> records = page.getResult();
         return new PageResult(total, records);
+    }
+
+    /**
+     * 启用禁用员工账号
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Employee employee = new Employee();
+        employee.setId(id);
+        employee.setStatus(status);
+        //更新时间
+        employee.setUpdateTime(LocalDateTime.now());
+//        Lombok中的@Builder构建器提供的
+//        Employee employee = Employee.builder()
+//                .status(status)
+//                .id(id)
+//                .build();
+        employeeMapper.update(employee);
+
     }
 }
