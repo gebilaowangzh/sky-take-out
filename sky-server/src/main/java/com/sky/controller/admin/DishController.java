@@ -4,11 +4,11 @@ import com.sky.dto.DishDTO;
 import com.sky.result.Result;
 import com.sky.service.DishService;
 import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +20,8 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+//    @Autowired
+//    private RedisTemplate<String, Object> redisTemplate;
 
 
     /**

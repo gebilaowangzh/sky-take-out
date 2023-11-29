@@ -4,11 +4,16 @@
 <mapper namespace="com.sky.mapper.DishMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into dish
-        (name, category_id, price, image, description, status, create_time, update_time, create_user, update_user)
-        values
-        (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})
+        (name, category_id, price, image, description, status, create_time, update_time, create_user,
+                         update_user)
+        values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{status}, #{createTime}, #{updateTime},
+                #{createUser}, #{updateUser})
     </insert>
 
-
+    <!--useGeneratedKeys="true" 表示在执行插入操作后，会将数据库生成的主键值返回给调用者。
+    这通常用于自增主键的情况，比如在插入一条新的记录时，数据库会自动为这条记录分配一个唯一的主键值，
+    而设置了 useGeneratedKeys="true" 之后，可以方便地获取到这个主键值。
+    keyProperty="id" 则指定了用来存储生成的主键值的属性名。在这个例子中，表示将生成的主键值存储在一个名为 "id" 的属性中。
+    因此，整体来说，这段代码的含义是在执行插入操作后，将数据库生成的主键值返回给调用者，并存储在名为 "id" 的属性中。-->
 
 </mapper>

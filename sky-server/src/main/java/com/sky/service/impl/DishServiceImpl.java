@@ -44,13 +44,17 @@ public class DishServiceImpl implements DishService {
     public void saveWithFlavor(DishDTO dishDTO) {
         // 保存菜品
         Dish dish = new Dish();
+        log.info("dishDTO:{}", dishDTO);
         BeanUtils.copyProperties(dishDTO, dish);
+        log.info("dish:{}", dish);
         dishMapper.insert(dish);
         // 获取菜品ID
+        //获取insert语句生成的主键值
         Long dishId = dish.getId();
         // 保存口味
         List<DishFlavor> flavors = dishDTO.getFlavors();
         if (flavors != null && flavors.size() > 0) {
+            //给口味批量赋值菜品id
             flavors.forEach(flavor -> {
                 flavor.setDishId(dishId);
             });
