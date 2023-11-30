@@ -22,13 +22,15 @@ public interface DishService {
      * @param dishPageQueryDTO
      */
     public PageResult queryPage(DishPageQueryDTO dishPageQueryDTO);
-//
-//    /**
-//     * 删除菜品
-//     *
-//     * @param ids
-//     */
-//    public void deleteBatch(List<Long> ids);
+
+
+
+    /**
+     * 批量删除菜品
+     *
+     * @param ids
+     */
+    public void deleteBatch(List<Long> ids);
 //
 //    /**
 //     * 根据id查询菜品
