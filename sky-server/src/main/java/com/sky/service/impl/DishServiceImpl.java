@@ -72,7 +72,7 @@ public class DishServiceImpl implements DishService {
      * 分页查询菜品
      *
      * @param dishPageQueryDTO
-     * @return
+     * @return 封装分页查询结果
      */
     @Override
     public PageResult queryPage(DishPageQueryDTO dishPageQueryDTO) {
@@ -90,30 +90,36 @@ public class DishServiceImpl implements DishService {
     @Override
     @Transactional // 一致性
     public void deleteBatch(List<Long> ids) {
-        log.info("进入deleteBatch");
+//        log.info("进入deleteBatch");
         // 判断菜品是否能够删除 是否启用
         for (Long id : ids) {
             Dish dish = dishMapper.getById(id);
             if (dish.getStatus() == StatusConstant.ENABLE) {
                 // 菜品在售 抛出异常
-                throw new DeletionNotAllowedException(dish.getName()+MessageConstant.DISH_ON_SALE);
+                throw new DeletionNotAllowedException(dish.getName() + MessageConstant.DISH_ON_SALE);
             }
         }
-        log.info("1");
+//        log.info("1");
         // 是否被套餐引用
         List<Long> setmealIds = setmealDishMapper.getSetmealIdByDishIds(ids);
         if (setmealIds != null && setmealIds.size() > 0) {
             // 抛出异常
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }
-        log.info("2");
+//        log.info("2");
         // 删除菜品
-        for (Long id : ids) {
-            dishMapper.deleteById(id);
-            // 删除菜品口味
-            dishFlavorMapper.deleteByDishId(id);
-        }
-        log.info("3");
+//        for (Long id : ids) {
+//            dishMapper.deleteById(id);
+//            // 删除菜品口味
+//            dishFlavorMapper.deleteByDishId(id);
+//        }
+//        log.info("3");
+        // 根据id删除批量菜品
+        dishMapper.deleteByIds(ids);
+        //根据id删除对应的菜品
+        dishMapper.deleteByDishIds(ids);
+
+
     }
 
 }

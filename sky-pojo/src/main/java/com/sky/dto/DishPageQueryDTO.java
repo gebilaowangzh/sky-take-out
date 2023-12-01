@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author heng
+ * @date 2023/12/01
+ */
 @Data
 public class DishPageQueryDTO implements Serializable {
 
