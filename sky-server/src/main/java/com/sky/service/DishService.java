@@ -49,6 +49,7 @@ public interface DishService {
      */
     public void updateWithFlavor(DishDTO dishDTO);
 
+
 //    /**
 //     * 启用或禁用菜品
 //     *
@@ -56,14 +57,16 @@ public interface DishService {
 //     * @param id
 //     */
 //    public void startOrStop(Integer status, Long id);
-//
-//    /**
-//     * 根据分类id查询菜品
-//     *
-//     * @param categoryId
-//     * @return
-//     */
-//    public List<Dish> list(Long categoryId);
+
+    /**
+     * 根据分类id查询菜品
+     *
+     * @param categoryId
+     * @return
+     */
+    public List<Dish> list(Long categoryId);
+
+
 //
 //    /**
 //     * 条件查询菜品和口味
