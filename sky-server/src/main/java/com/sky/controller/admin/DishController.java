@@ -74,4 +74,18 @@ public class DishController {
 
     }
 
+
+    /**
+     * 根据id查询菜品
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "根据id查询菜品")
+    @GetMapping("/{id}")
+    public  Result<DishVO> getById(@PathVariable Long id){
+        log.info("根据id查询菜品:{",id);
+        DishVO dishvO = dishService.getByIdWithFlavor( id);
+        return Result.success(dishvO);
+
+    }
 }
