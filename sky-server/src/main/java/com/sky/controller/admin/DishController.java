@@ -52,7 +52,7 @@ public class DishController {
      */
     @GetMapping("/page")
     @ApiOperation(value = "分页查询菜品")
-    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO){
+    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO) {
         log.info("菜品分页查询列表：{}", dishPageQueryDTO);
 
         PageResult querySet = dishService.queryPage(dishPageQueryDTO);
@@ -60,14 +60,15 @@ public class DishController {
     }
 
     /**
-     *批量删除菜品
+     * 批量删除菜品
+     *
      * @param ids
      * @return
      */
     @DeleteMapping
     @ApiOperation(value = "批量删除菜品")
-    public Result delete(@RequestParam List<Long> ids){
-        log.info("批量删除菜品：{}",ids);
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("批量删除菜品：{}", ids);
         dishService.deleteBatch(ids);
 //        clearRedis("dish_*");
         return Result.success();
@@ -77,15 +78,31 @@ public class DishController {
 
     /**
      * 根据id查询菜品
+     *
      * @param id
      * @return
      */
     @ApiOperation(value = "根据id查询菜品")
     @GetMapping("/{id}")
-    public  Result<DishVO> getById(@PathVariable Long id){
-        log.info("根据id查询菜品:{",id);
-        DishVO dishvO = dishService.getByIdWithFlavor( id);
+    public Result<DishVO> getById(@PathVariable Long id) {
+        log.info("根据id查询菜品:{", id);
+        DishVO dishvO = dishService.getByIdWithFlavor(id);
         return Result.success(dishvO);
 
     }
-}
+
+    /**
+     * 修改菜品
+     * @param dishDTO
+     * @return
+     */
+    @PutMapping()
+    @ApiOperation(value = "修改菜品")
+    public Result update(@RequestBody DishDTO dishDTO) {
+        log.info("修改菜品：{}", dishDTO);
+        dishService.updateWithFlavor(dishDTO);
+        return Result.success();
+    }
+
+
+    }

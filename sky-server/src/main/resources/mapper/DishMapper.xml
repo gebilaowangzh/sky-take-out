@@ -9,6 +9,7 @@
         values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{status}, #{createTime}, #{updateTime},
                 #{createUser}, #{updateUser})
     </insert>
+
     <!--useGeneratedKeys="true" 表示在执行插入操作后，会将数据库生成的主键值返回给调用者。
 这通常用于自增主键的情况，比如在插入一条新的记录时，数据库会自动为这条记录分配一个唯一的主键值，
 而设置了 useGeneratedKeys="true" 之后，可以方便地获取到这个主键值。
@@ -47,36 +48,36 @@ keyProperty="id" 则指定了用来存储生成的主键值的属性名。在这
     </delete>
 
 
-    <!--    <update id="update">-->
-    <!--        update dish-->
-    <!--        <set>-->
-    <!--            <if test="name != null">-->
-    <!--                name = #{name},-->
-    <!--            </if>-->
-    <!--            <if test="categoryId != null">-->
-    <!--                category_id = #{categoryId},-->
-    <!--            </if>-->
-    <!--            <if test="price != null">-->
-    <!--                price = #{price},-->
-    <!--            </if>-->
-    <!--            <if test="image != null">-->
-    <!--                image = #{image},-->
-    <!--            </if>-->
-    <!--            <if test="description != null">-->
-    <!--                description = #{description},-->
-    <!--            </if>-->
-    <!--            <if test="status != null">-->
-    <!--                status = #{status},-->
-    <!--            </if>-->
-    <!--            <if test="updateTime != null">-->
-    <!--                update_time = #{updateTime},-->
-    <!--            </if>-->
-    <!--            <if test="updateUser != null">-->
-    <!--                update_user = #{updateUser}-->
-    <!--            </if>-->
-    <!--        </set>-->
-    <!--        where id = #{id}-->
-    <!--    </update>-->
+        <update id="update">
+            update dish
+            <set>
+                <if test="name != null">
+                    name = #{name},
+                </if>
+                <if test="categoryId != null">
+                    category_id = #{categoryId},
+                </if>
+                <if test="price != null">
+                    price = #{price},
+                </if>
+                <if test="image != null">
+                    image = #{image},
+                </if>
+                <if test="description != null">
+                    description = #{description},
+                </if>
+                <if test="status != null">
+                    status = #{status},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime},
+                </if>
+                <if test="updateUser != null">
+                    update_user = #{updateUser}
+                </if>
+            </set>
+            where id = #{id}
+        </update>
 
     <!--    <select id="list">-->
     <!--        select * from dish-->
