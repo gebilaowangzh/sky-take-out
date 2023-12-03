@@ -23,7 +23,7 @@ public class RedisConfig {
         // 设置key的序列化器
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         // 设置value的序列化器
-        // redisTemplate.setValueSerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
         // 使配置生效
         redisTemplate.afterPropertiesSet();
         log.info("redisTemplate配置完成");
