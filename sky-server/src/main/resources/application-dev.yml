@@ -16,6 +16,17 @@ sky:
     #    上传文件名中是否使用原文件名
     useOriginalName: false
 
+  wechat:
+    appid: wx325ca24552ebf1c7
+    secret: 7fdbb89a860df49dc92874200c925417
+#    mchid:
+#    mchSerialNo:
+#    privateKeyFilePath:
+#    apiV3Key:
+#    weChatPayCertFilePath:
+#    notifyUrl:
+#    refundNotifyUrl:
+
 spring:
   redis:
     host: localhost
