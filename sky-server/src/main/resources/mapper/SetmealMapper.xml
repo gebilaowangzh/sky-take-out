@@ -7,4 +7,27 @@
         values (#{categoryId}, #{name}, #{price}, #{status}, #{description}, #{image}, #{createTime}, #{updateTime},
                 #{createUser}, #{updateUser})
     </insert>
+    <select id="selectSetmeals" resultType="Setmeal">
+        SELECT
+        s.*,
+        c.name AS categoryName
+        FROM
+        setmeal s
+        LEFT JOIN
+        category c ON s.category_id = c.id
+        <where>
+            <if test="name != null">
+                AND s.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="status != null">
+                AND s.status = #{status}
+            </if>
+            <if test="categoryId != null">
+                AND s.category_id = #{categoryId}
+            </if>
+        </where>
+        ORDER BY
+        s.create_time DESC
+    </select>
+
 </mapper>
