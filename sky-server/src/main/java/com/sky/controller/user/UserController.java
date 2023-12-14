@@ -3,6 +3,9 @@ package com.sky.controller.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sky.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,34 +26,37 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/user/user")
 @Slf4j
+@Api(tags = "用户端接口")
+//@SuppressWarnings("unchecked")
 public class UserController {
-//    @Autowired
-//    private UserService userService;
-//
-//    @Autowired
-//    private JwtProperties jwtProperties;
-//
-//    /**
-//     * 微信登录
-//     *
-//     * @param userLoginDTO
-//     * @return
-//     */
-//    @PostMapping("/login")
-//    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
-//        log.info("用户登录： userLoginDTO:{}", userLoginDTO);
-//        User user = userService.wxLogin(userLoginDTO);
-//
-//        // 生成jwt令牌
-//        Map<String, Object> claims = new HashMap<>();
-//        claims.put(JwtClaimsConstant.USER_ID, user.getId());
-//        String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
-//        UserLoginVO userLoginVO = UserLoginVO.builder()
-//                .id(user.getId())
-//                .openid(user.getOpenid())
-//                .token(token)
-//                .build();
-//
-//        return Result.success(userLoginVO);
-//    }
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private JwtProperties jwtProperties;
+
+    /**
+     * 微信登录
+     *
+     * @param userLoginDTO
+     * @return
+     */
+    @PostMapping("/login")
+    @ApiOperation("微信登录")
+    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
+        log.info("用户登录： userLoginDTO:{}", userLoginDTO);
+        User user = userService.wxLogin(userLoginDTO);
+
+        // 生成jwt令牌
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(JwtClaimsConstant.USER_ID, user.getId());
+        String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
+        UserLoginVO userLoginVO = UserLoginVO.builder()
+                .id(user.getId())
+                .openid(user.getOpenid())
+                .token(token)
+                .build();
+
+        return Result.success(userLoginVO);
+    }
 }
